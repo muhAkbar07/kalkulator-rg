@@ -210,7 +210,38 @@ document.getElementById('pinjaman').addEventListener('change', (e) => {
     : '';
 });
 
-// Set default date
-const today = new Date().toISOString().split('T')[0];
-document.getElementById('tanggal').value = today;
+function updateTanggal() {
+  const now = new Date();
+
+  const today =
+    now.getFullYear() +
+    "-" +
+    String(now.getMonth() + 1).padStart(2, "0") +
+    "-" +
+    String(now.getDate()).padStart(2, "0");
+
+  document.getElementById("tanggal").value = today;
+}
+
+updateTanggal();
+
+function jadwalkanUpdateTengahMalam() {
+  const now = new Date();
+
+  const besok = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() + 1,
+    0, 0, 1 // jam 00:00:01
+  );
+
+  const delay = besok - now;
+
+  setTimeout(() => {
+    updateTanggal();
+    jadwalkanUpdateTengahMalam();
+  }, delay);
+}
+
+jadwalkanUpdateTengahMalam();
 
