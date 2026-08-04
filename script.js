@@ -85,7 +85,7 @@ function calculateGadai(event) {
   // Tanggal jatuh tempo
   const transaksiDate = new Date(tanggal + 'T00:00:00');
   const jatuhTempo = new Date(transaksiDate);
-  jatuhTempo.setDate(jatuhTempo.getDate() + 30);   
+  jatuhTempo.setDate(jatuhTempo.getDate() + 31);   
 
   // Batas lewat jatuh tempo (15 hari setelah jatuh tempo) 
   // const batasLewatTempo = new Date(jatuhTempo);
@@ -145,7 +145,7 @@ function calculateGadai(event) {
         <h4>⚠️ Perpanjangan Lewat Jatuh Tempo</h4>
         <p>Perpanjangan lewat dari jatuh tempo 1 sampai 15 hari, denda flat 5% </p>
         <p><small style="color: #eb2525; font-weight: 600;">Batas: ${formatDate(
-          new Date(transaksiDate.getTime() + 45 * 86400000).toISOString().split('T')[0]
+          new Date(transaksiDate.getTime() + 46 * 86400000).toISOString().split('T')[0]
         )} (Maxsimal Perlanjangan)</small>
         </p>
       </div>
@@ -157,7 +157,7 @@ function calculateGadai(event) {
         <h4>⊘ Tebus Lewat Jatuh Tempo</h4>
         <p>Pelunasan lewat dari jatuh tempo 2 sampai 15 hari, denda flat 5%</p>
         <p>Biaya bulan selanjutnya 5%<br><small style="color: #eb2525; font-weight: 600;">Batas: ${formatDate(
-          new Date(transaksiDate.getTime() + 45 * 86400000).toISOString().split('T')[0]
+          new Date(transaksiDate.getTime() + 46 * 86400000).toISOString().split('T')[0]
         )} (Maxsimal Pelunasan)</small>
         </p>
       </div>
