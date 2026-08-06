@@ -26,10 +26,6 @@ function formatDate(value) {
 function getAdminFee(kategori, pinjaman) {
   switch (kategori) {
 
-  //   case 'hp':
-  //       if (pinjaman <= 1000000) return 10000;
-
-  // return Math.min(Math.ceil(pinjaman / 1000000) * 10000, 100000);
     case 'hp':
     if (pinjaman <= 1000000) return 10000;
 
@@ -69,11 +65,7 @@ function calculateGadai(event) {
   event.preventDefault();
 
   const kategori = document.querySelector('input[name="kategori"]:checked').value;
-  const tanggal = document.getElementById('tanggal').value;
-  // const pinjaman = Number(document.getElementById('pinjaman').value || 0); 
-  // const pinjaman = Number(
-  // document.getElementById("pinjaman").value.replace(/\./g, "")
-  // ); 
+  const tanggal = document.getElementById('tanggal').value; 
 
   const pinjaman = Number(
   document.getElementById("pinjaman").value.replace(/\./g, "") || 0
@@ -86,7 +78,11 @@ function calculateGadai(event) {
   }
 
   // Perhitungan biaya
-  const tarif = pinjaman * 0.1;
+  // const tarif = pinjaman * 0.1;
+  let tarif = pinjaman * 0.10;
+
+  // Bulatkan ke atas ke kelipatan Rp1.000
+  tarif = Math.ceil(tarif / 1000) * 1000;
   const admin = getAdminFee(kategori, pinjaman);
   const asuransi = 10000;
   const totalPotongan = tarif + admin + asuransi;
@@ -99,14 +95,9 @@ function calculateGadai(event) {
   const jatuhTempo = new Date(transaksiDate);
   jatuhTempo.setDate(jatuhTempo.getDate() + 31);   
 
-  // Batas lewat jatuh tempo (15 hari setelah jatuh tempo) 
-  // const batasLewatTempo = new Date(jatuhTempo);
-  // batasLewatTempo.setDate(batasLewatTempo.getDate() + 15);
 
   // Skenario pembayaran
   const diskonTebusCepat = Math.ceil((pinjaman - (tarif * 0.5)) / 1000) * 1000;
-  // const perpanjangNormal = Math.ceil((pinjaman * 0.11) / 1000) * 1000;
-  // const perpanjangLewat = Math.ceil((pinjaman * 0.16) / 1000) * 1000;
 
   // Admin perpanjangan
   const adminPerpanjang =
@@ -280,4 +271,28 @@ function jadwalkanUpdateTengahMalam() {
 }
 
 jadwalkanUpdateTengahMalam();
+
+
+const tbody = document.getElementById("tabel-pinjaman");
+
+for (let pinjaman = 500000; pinjaman <= 10000000; pinjaman += 100000) {
+  const tarif = pinjaman * 0.10;
+
+  let admin;
+  if (pinjaman <= 1000000) {
+    admin = 10000;
+  } else {
+    admin = Math.ceil(pinjaman / 1000000) * 10000;
+  }
+
+  const asuransi = 10000;
+  const bersih = pinjaman - tarif - admin - asuransi;
+
+  tbody.innerHTML += `
+    <tr>
+      <td>${formatRupiah(pinjaman)}</td>
+      <td>${formatRupiah(bersih)}</td>
+    </tr>
+  `;
+}
 

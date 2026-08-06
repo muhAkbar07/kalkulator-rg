@@ -11,15 +11,25 @@
     <main class="container">
 
       <section class="card header-card">
-        <h1>Kalkulator <span class="highlight">Raja Gadai</span></h1>
+        <h1>Kalkulator <br> <span class="highlight">Raja Gadai</span></h1>
         <p>Hitung Pinjaman, Perpanjangan & Jatuh Tempo</p>
       </section>
 
       <section class="card">
         <div class="tabs">
-          <button class="tab-btn active" data-tab="hitungan">
+          <!-- <button class="tab-btn active" data-tab="hitungan">
             <span>📋</span> Hitungan
-          </button>
+          </button> -->
+
+          <div class="tab-navigation">
+            <button class="tab-btn active" data-tab="hitungan">
+              <span>📋</span> Hitungan
+            </button>
+
+            <button class="tab-btn" data-tab="tabel">
+              <span>📊</span> Tabel
+            </button>
+          </div>
 
         </div><br /><br />
 
@@ -97,32 +107,17 @@
 
         <div class="tab-content hidden" id="tabel">
           <div class="tabel-info">
-            <h3>Tabel Admin HP / iPhone</h3>
+            <h3>Tabel Pehitungan Gadai Baru</h3>
+            
+
             <table class="admin-table">
               <thead>
                 <tr>
-                  <th>Range Pinjaman</th>
-                  <th>Admin</th>
+                  <th>Pinjaman</th>
+                  <th>Diterima Bersih</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>Rp100.000 - Rp999.999</td>
-                  <td>Rp10.000</td>
-                </tr>
-                <tr>
-                  <td>Rp1.000.000 - Rp4.999.999</td>
-                  <td>Rp25.000</td>
-                </tr>
-                <tr>
-                  <td>Rp5.000.000 - Rp9.999.999</td>
-                  <td>Rp50.000</td>
-                </tr>
-                <tr>
-                  <td>Rp10.000.000+</td>
-                  <td>Rp100.000</td>
-                </tr>
-              </tbody>
+              <tbody id="tabel-pinjaman"></tbody>
             </table>
           </div>
         </div>
