@@ -114,8 +114,16 @@ function calculateGadai(event) {
     (pinjaman * 0.15 + adminPerpanjang) / 1000
   ) * 1000;
   
-  const tebuLewat = pinjaman + pinjaman * 0.05 + tarif * 0.5;
-  const nominalPengganti = pinjaman + pinjaman * 0.1;
+    // const tebuLewat = pinjaman + pinjaman * 0.05 + tarif * 0.5;
+    // const nominalPengganti = pinjaman + pinjaman * 0.1;
+
+    const tebuLewat = Math.ceil(
+    (pinjaman + pinjaman * 0.05 + tarif * 0.5) / 1000
+  ) * 1000;
+
+  const nominalPengganti = Math.ceil(
+    (pinjaman + pinjaman * 0.1) / 1000
+  ) * 1000;
 
   // Update tampilan
   document.getElementById('nominal-pinjaman').textContent = formatRupiah(pinjaman);
@@ -129,65 +137,67 @@ function calculateGadai(event) {
   document.getElementById('biaya-admin').textContent = formatRupiah(admin);
   document.getElementById('biaya-asuransi').textContent = formatRupiah(asuransi);
   document.getElementById('total-potongan').textContent = formatRupiah(totalPotongan);
+  document.getElementById('uang-terima').textContent = formatRupiah(uangTerima);
 
-  // Generate scenario cards
+  // Generate scenario cards — dibuat lebih mudah dibaca saat CS menjelaskan ke nasabah
   const scenarioHTML = `
-    <div class="scenario-card terima">
-      <div>
-        <h4>↓ Uang Terima Bersih</h4>
-        <p>Pinjaman - Tarif - Admin - Asuransi</p>
-      </div>
-      <div class="nominal">${formatRupiah(uangTerima)}</div>
-    </div>
-
     <div class="scenario-card diskon">
-      <div>
-        <h4>⚡ Diskon Tebus Cepat</h4>
-        <p>Promo Tebus Cepat 0-3 hari setelah transaksi diskon 50%<br><small style="color: #2563eb; font-weight: 600;">Batas: ${formatDate(
-          new Date(transaksiDate.getTime() + 4 * 86400000).toISOString().split('T')[0]
-        )} (3 hari setelah transaksi)</small></p>
+      <div class="recommended">⭐ Pilihan Menguntungkan</div>
+      <div class="scenario-left">
+        <h4>⚡ Tebus Cepat</h4>
+        <p>Tebus Maksimal 3 hari dari Tanggal Transaksi dengan Diskon 50% Tarif Sewa.</p>
+        <div class="scenario-date">Batas: ${formatDate(new Date(transaksiDate.getTime() + 4 * 86400000).toISOString().split('T')[0])}</div>
       </div>
-      <div class="nominal">${formatRupiah(diskonTebusCepat)}</div>
+      <div class="scenario-right">
+        <span class="label">Total Tebus cepat</span>
+        <div class="nominal">${formatRupiah(diskonTebusCepat)}</div>
+      </div>
     </div>
 
     <div class="scenario-card perpanjang">
-      <div>
+      <div class="scenario-left">
         <h4>📅 Perpanjangan Normal</h4>
-        <p>Perpanjangan untuk menambah waktu jatuh tempo 30 hari </p>
+        <p>Perpanjang masa pinjaman sampai 30 hari.</p>
       </div>
-      <div class="nominal">${formatRupiah(perpanjangNormal)}</div>
+      <div class="scenario-right">
+        <span class="label">Biaya Perpanjangan</span>
+        <div class="nominal">${formatRupiah(perpanjangNormal)}</div>
+      </div>
     </div>
 
     <div class="scenario-card lewat">
-      <div>
-        <h4>⚠️ Perpanjangan Lewat Jatuh Tempo</h4>
-        <p>Perpanjangan lewat dari jatuh tempo 1 sampai 15 hari, denda flat 5% </p>
-        <p><small style="color: #eb2525; font-weight: 600;">Batas: ${formatDate(
-          new Date(transaksiDate.getTime() + 46 * 86400000).toISOString().split('T')[0]
-        )} (Maxsimal Perpanjangan)</small>
-        </p>
+      <div class="scenario-left">
+        <h4>⚠️ Perpanjang Setelah Jatuh Tempo</h4>
+        <p>Perpanjangan 1–15 hari setelah jatuh tempo dengan denda flat 5%.</p>
+        <div class="scenario-date">Batas: ${formatDate(new Date(transaksiDate.getTime() + 46 * 86400000).toISOString().split('T')[0])}</div>
       </div>
-      <div class="nominal">${formatRupiah(perpanjangLewat)}</div>
+      <div class="scenario-right">
+        <span class="label">Biaya Perpanjangan</span>
+        <div class="nominal">${formatRupiah(perpanjangLewat)}</div>
+      </div>
     </div>
 
     <div class="scenario-card lewat">
-      <div>
-        <h4>⊘ Tebus Lewat Jatuh Tempo</h4>
-        <p>Pelunasan lewat dari jatuh tempo 2 sampai 15 hari, denda flat 5%</p>
-        <p>Biaya bulan selanjutnya 5%<br><small style="color: #eb2525; font-weight: 600;">Batas: ${formatDate(
-          new Date(transaksiDate.getTime() + 46 * 86400000).toISOString().split('T')[0]
-        )} (Maxsimal Pelunasan)</small>
-        </p>
+      <div class="scenario-left">
+        <h4>⚠️ Tebus Setelah Jatuh Tempo</h4>
+        <p>Pelunasan 2–15 hari setelah jatuh tempo dengan denda flat 5%.</p>
+        <div class="scenario-date">Batas: ${formatDate(new Date(transaksiDate.getTime() + 46 * 86400000).toISOString().split('T')[0])}</div>
       </div>
-      <div class="nominal">${formatRupiah(tebuLewat)}</div>
+      <div class="scenario-right">
+        <span class="label">Total Tebus</span>
+        <div class="nominal">${formatRupiah(tebuLewat)}</div>
+      </div>
     </div>
 
     <div class="scenario-card pengganti">
-      <div>
-        <h4>🏷️ Nominal Pengganti</h4>
-        <p>Pinjaman + 10%</p>
+      <div class="scenario-left">
+        <h4>🏷️ Nilai Asuransi</h4>
+        <p>Nominal Asuransi sebesar pinjaman + 10%.</p>
+      </div>  
+      <div class="scenario-right">
+        <span class="label">Nominal Asuransi</span>
+        <div class="nominal">${formatRupiah(nominalPengganti)}</div>
       </div>
-      <div class="nominal">${formatRupiah(nominalPengganti)}</div>
     </div>
   `;
 
@@ -232,9 +242,10 @@ document.querySelectorAll('.tab-btn').forEach((btn) => {
 // Update input text saat number berubah
 document.getElementById('pinjaman').addEventListener('change', (e) => {
   const value = e.target.value;
-  document.getElementById('pinjaman-text').value = value
-    ? formatRupiah(Number(value)).replace('Rp', '').trim()
-    : '';
+  const pinjamanText = document.getElementById('pinjaman-text');
+  if (pinjamanText) {
+    pinjamanText.value = value ? formatRupiah(Number(value)).replace('Rp', '').trim() : '';
+  }
 });
 
 function updateTanggal() {
