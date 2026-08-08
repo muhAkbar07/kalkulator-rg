@@ -82,7 +82,6 @@ function calculateGadai(event) {
   }
 
   // Perhitungan biaya
-  // const tarif = pinjaman * 0.1;
   let tarif = pinjaman * 0.10;
 
   // Bulatkan ke atas ke kelipatan Rp1.000
@@ -98,7 +97,6 @@ function calculateGadai(event) {
   const transaksiDate = new Date(tanggal + 'T00:00:00');
   const jatuhTempo = new Date(transaksiDate);
   jatuhTempo.setDate(jatuhTempo.getDate() + 31);   
-
 
   // Skenario pembayaran
   const diskonTebusCepat = Math.ceil((pinjaman - (tarif * 0.5)) / 1000) * 1000;
@@ -184,7 +182,7 @@ function calculateGadai(event) {
     <div class="scenario-card lewat">
       <div class="scenario-left">
         <h4>⚠️ Tebus Setelah Jatuh Tempo</h4>
-        <p>Pelunasan 2–15 hari setelah jatuh tempo dengan denda flat 5%.</p>
+        <p>Pelunasan 2–15 hari setelah jatuh tempo dengan denda flat 5% + Denda dibulan berikutnya 5%.</p>
         <div class="scenario-date">Batas: ${formatDate(new Date(transaksiDate.getTime() + 46 * 86400000).toISOString().split('T')[0])}</div>
       </div>
       <div class="scenario-right">
