@@ -27,9 +27,9 @@ function getAdminFee(kategori, pinjaman) {
   switch (kategori) {
 
     case 'hp':
-    if (pinjaman <= 1000000) return 10000;
+      if (pinjaman <= 1000000) return 10000;
 
-    return Math.ceil(pinjaman / 1000000) * 10000;
+      return Math.ceil(pinjaman / 1000000) * 10000;
 
     case 'laptop':
       return pinjaman < 500000
@@ -69,12 +69,12 @@ function calculateGadai(event) {
   event.preventDefault();
 
   const kategori = document.querySelector('input[name="kategori"]:checked').value;
-  const tanggal = document.getElementById('tanggal').value; 
+  const tanggal = document.getElementById('tanggal').value;
 
   const pinjaman = Number(
-  document.getElementById("pinjaman").value.replace(/\./g, "") || 0
-);
-  
+    document.getElementById("pinjaman").value.replace(/\./g, "") || 0
+  );
+
 
   if (!tanggal || pinjaman < 100000) {
     alert('Mohon isi semua field dengan benar');
@@ -96,16 +96,16 @@ function calculateGadai(event) {
   // Tanggal jatuh tempo
   const transaksiDate = new Date(tanggal + 'T00:00:00');
   const jatuhTempo = new Date(transaksiDate);
-  jatuhTempo.setDate(jatuhTempo.getDate() + 31);   
+  jatuhTempo.setDate(jatuhTempo.getDate() + 31);
 
   // Skenario pembayaran
   const diskonTebusCepat = Math.ceil((pinjaman - (tarif * 0.5)) / 1000) * 1000;
 
   // Admin perpanjangan
   const adminPerpanjang =
-  pinjaman < 500000
-    ? 5000
-    : Math.ceil((pinjaman * 0.01) / 1000) * 1000;
+    pinjaman < 500000
+      ? 5000
+      : Math.ceil((pinjaman * 0.01) / 1000) * 1000;
 
   // Perpanjangan
   const perpanjangNormal = Math.ceil(
@@ -115,7 +115,7 @@ function calculateGadai(event) {
   const perpanjangLewat = Math.ceil(
     (pinjaman * 0.15 + adminPerpanjang) / 1000
   ) * 1000;
-  
+
   const tebuLewat = Math.ceil(
     (pinjaman + pinjaman * 0.05 + tarif * 0.5) / 1000
   ) * 1000;
@@ -212,7 +212,7 @@ function calculateGadai(event) {
 // Event listeners
 form.addEventListener('submit', calculateGadai);
 
- // Format input pinjaman saat diketik
+// Format input pinjaman saat diketik
 const pinjamanInput = document.getElementById("pinjaman");
 
 pinjamanInput.addEventListener("input", function () {
