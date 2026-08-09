@@ -43,6 +43,208 @@ button, input { font: inherit; }
 } */
 
 
+/* =========================
+   PROMO
+========================= */
+
+.promo-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  margin-bottom: 18px;
+
+  background: #f8fafc;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+}
+
+.promo-icon {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eaf2ff;
+  border-radius: 12px;
+
+  font-size: 23px;
+}
+
+.promo-header h3 {
+  margin: 0 0 4px;
+  font-size: 17px;
+}
+
+.promo-header p {
+  margin: 0;
+  color: var(--gray-600);
+  font-size: 12px;
+}
+
+
+/* GRID */
+
+.promo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+
+/* CARD */
+
+.promo-card {
+  padding: 18px;
+
+  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+
+  background: white;
+
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.promo-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+/* TOP */
+
+.promo-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.promo-emoji {
+  font-size: 25px;
+}
+
+.promo-badge {
+  padding: 5px 9px;
+
+  border-radius: 20px;
+
+  background: var(--gray-100);
+
+  color: var(--gray-600);
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+/* TEXT */
+
+.promo-card h4 {
+  margin: 0 0 8px;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.promo-highlight {
+  margin-bottom: 10px;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: var(--primary);
+}
+
+.promo-highlight strong {
+  font-size: 24px;
+}
+
+.promo-card p {
+  margin: 0;
+
+  color: var(--gray-600);
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+
+/* VARIASI CARD */
+
+.promo-fast {
+  border-left: 4px solid var(--success);
+}
+
+.promo-free {
+  border-left: 4px solid var(--info);
+}
+
+.promo-late {
+  border-left: 4px solid var(--warning);
+}
+
+.promo-member {
+  border-left: 4px solid #8b5cf6;
+}
+
+
+/* INFO */
+
+.promo-note {
+  display: flex;
+  gap: 12px;
+
+  margin-top: 18px;
+  padding: 15px;
+
+  border-radius: 10px;
+
+  background: rgba(59, 130, 246, 0.06);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.promo-note > span {
+  font-size: 20px;
+}
+
+.promo-note strong {
+  display: block;
+  margin-bottom: 3px;
+
+  font-size: 13px;
+}
+
+.promo-note p {
+  margin: 0;
+
+  color: var(--gray-600);
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .promo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .promo-card {
+    padding: 16px;
+  }
+
+}
+
+
 .brand-mark {
   width: 42px;
   height: 42px;

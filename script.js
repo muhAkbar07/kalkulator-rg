@@ -116,10 +116,7 @@ function calculateGadai(event) {
     (pinjaman * 0.15 + adminPerpanjang) / 1000
   ) * 1000;
   
-    // const tebuLewat = pinjaman + pinjaman * 0.05 + tarif * 0.5;
-    // const nominalPengganti = pinjaman + pinjaman * 0.1;
-
-    const tebuLewat = Math.ceil(
+  const tebuLewat = Math.ceil(
     (pinjaman + pinjaman * 0.05 + tarif * 0.5) / 1000
   ) * 1000;
 
