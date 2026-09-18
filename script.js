@@ -46,6 +46,9 @@ function getAdminFee(kategori, pinjaman) {
 
     case 'tv-besar':
       return Math.ceil((pinjaman * 0.05) / 1000) * 1000;
+    
+    case 'kendaraan':
+      return Math.ceil((pinjaman * 0.05) / 1000) * 1000;
 
     default:
       return 10000;
@@ -55,11 +58,12 @@ function getAdminFee(kategori, pinjaman) {
 // Nama kategori
 function getNamaKategori(kategori) {
   const names = {
-    hp: 'HP / iPhone / Laptop',
-    laptop: 'Laptop Gaming, iPad, Mac, Tablet, Kamera',
-    proyektor: 'Proyektor, Video Game, SmartWatch',
+    hp: 'HP, Laptop, Iphone',
+    laptop: 'Laptop Gaming, iPad, Macbook, Tablet',
+    proyektor: 'Kamera, Proyektor, Video Game, Smart Watch',
     'tv-kecil': 'LED TV < 550rb',
     'tv-besar': 'LED TV > 550rb',
+    kendaraan: 'KENDARAAN MOTOR & MOBIL', 
   };
   return names[kategori] || kategori;
 }
@@ -306,3 +310,77 @@ for (let pinjaman = 500000; pinjaman <= 10000000; pinjaman += 100000) {
   `;
 }
 
+function salinWhatsApp() {
+    const pesan = `*RAJA GADAI*
+
+*📋 Detail Perhitungan Transaksi Gadai *
+
+Nilai Pinjaman:
+Rp ${document.getElementById('pinjaman').value}
+
+Uang yang Diterima:
+Rp ${document.getElementById('uang-terima').textContent}
+
+Tanggal Transaksi:
+${document.getElementById('tgl-transaksi').textContent}
+
+Jatuh Tempo:
+${document.getElementById('tgl-jatuh-tempo').textContent}
+
+*Pilihan Pembayaran:*
+
+⚡ *Tebus Cepat*
+Rp ${document.querySelector('.scenario-card.diskon .nominal').textContent}
+
+📅 *Perpanjangan*
+Rp ${document.querySelector('.scenario-card.perpanjang .nominal').textContent}
+
+⚠️ *Perpanjangan Lewat Jatuh Tempo*
+Rp ${document.querySelector('.scenario-card.lewat .nominal').textContent} 
+
+⚠️ *Pelunasan Lewat Jatuh Tempo*
+Rp ${document.querySelector('.scenario-card.pengganti .nominal').textContent} 
+
+Terima kasih telah mempercayakan kebutuhan gadai Anda kepada *Raja Gadai*.
+Semoga informasi ini membantu. Kami siap memberikan pelayanan terbaik untuk Anda. 🙏.*.`;
+
+      navigator.clipboard.writeText(pesan)
+        .then(() => {
+            showToast("✓ Informasi berhasil disalin", "Silakan paste ke WhatsApp");
+        })
+        .catch(() => {
+            showToast("✕ Gagal menyalin informasi", "Silakan coba lagi", "error");
+        });
+}
+
+function showToast(title, message, type = "success") {
+    const toast = document.createElement("div");
+
+    toast.className = `copy-toast ${type}`;
+
+    toast.innerHTML = `
+        <div class="toast-icon">
+            ${type === "success" ? "✓" : "!"}
+        </div>
+
+        <div class="toast-content">
+            <strong>${title}</strong>
+            <span>${message}</span>
+        </div>
+    `;
+
+    // WAJIB langsung ke body
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => {
+        toast.classList.add("show");
+    });
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    }, 2500);
+}
