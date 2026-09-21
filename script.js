@@ -58,7 +58,7 @@ function getAdminFee(kategori, pinjaman) {
 // Nama kategori
 function getNamaKategori(kategori) {
   const names = {
-    hp: 'HP, Laptop, Iphone',
+    hp: 'HP, Laptop, Iphone, LM',
     laptop: 'Laptop Gaming, iPad, Macbook, Tablet',
     proyektor: 'Kamera, Proyektor, Video Game, Smart Watch',
     'tv-kecil': 'LED TV < 550rb',
@@ -319,7 +319,7 @@ Nilai Pinjaman:
 Rp ${document.getElementById('pinjaman').value}
 
 Uang yang Diterima:
-Rp ${document.getElementById('uang-terima').textContent}
+${document.getElementById('uang-terima').textContent}
 
 Tanggal Transaksi:
 ${document.getElementById('tgl-transaksi').textContent}
@@ -330,16 +330,16 @@ ${document.getElementById('tgl-jatuh-tempo').textContent}
 *Pilihan Pembayaran:*
 
 ⚡ *Tebus Cepat*
-Rp ${document.querySelector('.scenario-card.diskon .nominal').textContent}
+${document.querySelector('.scenario-card.diskon .nominal').textContent}
 
 📅 *Perpanjangan*
-Rp ${document.querySelector('.scenario-card.perpanjang .nominal').textContent}
+${document.querySelector('.scenario-card.perpanjang .nominal').textContent}
 
 ⚠️ *Perpanjangan Lewat Jatuh Tempo*
-Rp ${document.querySelector('.scenario-card.lewat .nominal').textContent} 
+${document.querySelector('.scenario-card.lewat .nominal').textContent} 
 
 ⚠️ *Pelunasan Lewat Jatuh Tempo*
-Rp ${document.querySelector('.scenario-card.pengganti .nominal').textContent} 
+${document.querySelector('.scenario-card.pengganti .nominal').textContent} 
 
 Terima kasih telah mempercayakan kebutuhan gadai Anda kepada *Raja Gadai*.
 Semoga informasi ini membantu. Kami siap memberikan pelayanan terbaik untuk Anda. 🙏.*.`;
