@@ -318,13 +318,11 @@ Berikut kami sampaikan simulasi gadai sesuai nominal pinjaman yang Kakak butuhka
 
 Nilai Pinjaman:
 Rp ${document.getElementById('pinjaman').value}
-
 Uang yang Diterima:
 ${document.getElementById('uang-terima').textContent}
 
 Tanggal Transaksi:
 ${document.getElementById('tgl-transaksi').textContent}
-
 Jatuh Tempo:
 ${document.getElementById('tgl-jatuh-tempo').textContent}
 
@@ -333,10 +331,12 @@ ${document.getElementById('tgl-jatuh-tempo').textContent}
 ⚡ *Tebus Cepat 0-3 Hari*
 ${document.querySelector('.scenario-card.diskon .nominal').textContent}
 
-📅 *Perpanjangan*
+📅 *Perpanjangan + Cicil*
+(Bisa cicil pokok pinjaman mulai Rp50.000)
 ${document.querySelector('.scenario-card.perpanjang .nominal').textContent}
 
-⚠️ *Perpanjangan Lewat Jatuh Tempo*
+⚠️ *Perpanjangan Lewat Jatuh Tempo + Cicil*
+(Bisa cicil pokok pinjaman mulai Rp50.000)
 ${document.querySelector('.scenario-card.lewat .nominal').textContent} 
 
 ⚠️ *Pelunasan Lewat Jatuh Tempo*
