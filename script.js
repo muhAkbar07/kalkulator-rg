@@ -330,7 +330,7 @@ ${document.getElementById('tgl-jatuh-tempo').textContent}
 
 *Pilihan Pembayaran:*
 
-⚡ *Tebus Cepat*
+⚡ *Tebus Cepat 0-3 Hari*
 ${document.querySelector('.scenario-card.diskon .nominal').textContent}
 
 📅 *Perpanjangan*
