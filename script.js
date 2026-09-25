@@ -313,7 +313,8 @@ for (let pinjaman = 500000; pinjaman <= 10000000; pinjaman += 100000) {
 function salinWhatsApp() {
     const pesan = `*RAJA GADAI*
 
-*📋 Detail Perhitungan Transaksi Gadai *
+*📋 Halo Kak 👋
+Berikut kami sampaikan simulasi gadai sesuai nominal pinjaman yang Kakak butuhkan:*
 
 Nilai Pinjaman:
 Rp ${document.getElementById('pinjaman').value}
@@ -341,10 +342,15 @@ ${document.querySelector('.scenario-card.lewat .nominal').textContent}
 ⚠️ *Pelunasan Lewat Jatuh Tempo*
 ${document.querySelector('.scenario-card.pengganti .nominal').textContent} 
 
-Terima kasih telah mempercayakan kebutuhan gadai Anda kepada *Raja Gadai*.
-Semoga informasi ini membantu. Kami siap memberikan pelayanan terbaik untuk Anda. 🙏.*.`;
+Informasi di atas merupakan simulasi agar Kakak lebih mudah memahami perhitungan gadai di Raja Gadai.
 
-      navigator.clipboard.writeText(pesan)
+Terima kasih telah mempercayakan kebutuhan gadai Anda kepada Raja Gadai. 👑
+Kami siap membantu memberikan pelayanan yang mudah, aman, dan nyaman. 🙏
+
+RAJA GADAI
+Solusi kebutuhan dana Anda ✨.`;
+
+      navigator.clipboard.writeText(pesan)  
         .then(() => {
             showToast("✓ Informasi berhasil disalin", "Silakan paste ke WhatsApp");
         })
